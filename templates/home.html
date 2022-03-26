@@ -1,0 +1,186 @@
+{% extends 'base-template.html' %} 
+{% block content %} 
+{% load static %}
+<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+      <h1>The Thatix Recipe <span>Community</span></h1>
+
+     
+   
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+   
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about py-5">
+      <div class="container">
+
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <img src="{% static 'assets/img/recipe.jpg' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-5 pt-4 pt-lg-0">
+		  <em class="text-danger">About Us</em>
+            <h3 class="mb-4">Give yourself a lifetime of cooking confidence</h3>
+            <p class="mb-4">
+             There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, words which don’t look even slightly believable. If you are going to use a passage you need to be sure text.
+            </p>
+            <ul>
+              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+            </ul>
+         
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    
+
+
+    
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container">
+
+        <div class="section-title">
+		<em class="text-danger">Recent Recipes</em>
+          <h2>Latest Recipes</h2>
+          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            
+			<div class="icon-box">
+			<img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
+			<div class="p-3">
+			<h4><a href="#">Tart Pecan Pie</a></h4>
+			<p>A handful of simple ingredients typify the fresh, vibrant flavors of Greek cooking.</p>
+			</div>
+			</div>
+          </div>
+          <div class="col-md-3 mt-4 mt-lg-0">
+           
+			<div class="icon-box">
+			<img src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
+			<div class="p-3">
+			 
+			<h4><a href="#">Greek Gyro</a></h4>
+			<p>A handful of simple ingredients typify the fresh, vibrant flavors of Greek cooking.</p>
+			</div>
+          </div>
+		  </div>
+          <div class="col-md-3 mt-4 mt-lg-0">
+         
+		  <div class="icon-box">
+		   <img src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
+		   <div class="p-3">
+		  <h4><a href="#">Tomahawk Steak</a></h4>
+			<p>A handful of simple ingredients typify the fresh, vibrant flavors of Greek cooking.</p>
+			</div>
+          </div>
+          </div>
+          <div class="col-md-3 mt-4 mt-lg-0">
+          
+			<div class="icon-box">
+			  <img src="{% static 'assets/img/portfolio/portfolio-4.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
+			  <div class="p-3">
+			<h4><a href="#">Baked Chicken Breast</a></h4>
+			<p>A handful of simple ingredients typify the fresh, vibrant flavors of Greek cooking.</p>
+			</div>
+          </div>
+          </div>
+       
+        
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+  
+    
+
+  
+    
+
+    
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>Magnam dolores commodi suscipit eius consequatur ex aliquid fuga</p>
+        </div>
+
+        <div class="row mt-5 justify-content-center">
+
+          <div class="col-lg-10">
+
+            <div class="info-wrap">
+              <div class="row">
+                <div class="col-lg-4 info">
+                  <i class="bi bi-geo-alt"></i>
+                  <h4>Location:</h4>
+                  <p>A108 Adam Street<br>New York, NY 535022</p>
+                </div>
+
+                <div class="col-lg-4 info mt-4 mt-lg-0">
+                  <i class="bi bi-envelope"></i>
+                  <h4>Email:</h4>
+                  <p>info@example.com<br>contact@example.com</p>
+                </div>
+
+                <div class="col-lg-4 info mt-4 mt-lg-0">
+                  <i class="bi bi-phone"></i>
+                  <h4>Call:</h4>
+                  <p>+1 5589 55488 51<br>+1 5589 22475 14</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row mt-5 justify-content-center">
+          <div class="col-lg-10">
+            <form action="#" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+ {% endblock %}
