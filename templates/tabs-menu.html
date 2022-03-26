@@ -1,0 +1,44 @@
+<div class="bg-lightgray">
+    <div class="buttons_left">
+      <h1>Maria</h1>
+    </div>
+   
+    <div class="padding-tops">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="display_flex"> <i class="bi bi-calendar-check" style="font-size:24px"></i>
+            <p class="joineds">Joined 3-10-2021</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="display_flex"> <i class="bi bi-phone" style="font-size:24px"></i>
+            <p class="joineds">XXXXXXXXXX</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="display_flex"> <i class="bi bi-envelope" style="font-size:24px"></i>
+            <p class="joineds">maria@bahes.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="" style="padding:"0px 15px">
+    <div class="row">
+      <div class="col-md-12 padding-lefts">
+        <div class="tabbable-panel">
+          <div class="tabbable-line">
+            <ul class="nav nav-tabs">
+              <li class="active"> <a href="{% url 'dashboard:my_profile_view' %}">Edit Profile</a>
+              </li>
+              </li><li> <a href="{% url 'dashboard:change_password_view' %}">Change Password</a></li>
+              <li> <a href="{% url 'dashboard:recipe_upload_view' %}">Recipe upload</a>
+              </li>
+              <li> <a href="{% url 'dashboard:my_recipe_view' %}">My recipes</a></li>
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
