@@ -43,7 +43,7 @@
 			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
 				<div class="container-fluid">
 					<div class="row mt-3">
-						<h2>Sign in</h2>
+						<h2>Verify Account</h2>
 					</div>
 					{% if messages %}
 					{% for message in messages %}
@@ -65,24 +65,18 @@
 					{% endfor %}
 				{% endif %}
 					<div class="row">
-						<form method="POST" control="" class="form-group">
+						<form method="POST" action="{% url 'user:verify_account' %}" control="" class="form-group">
 							{% csrf_token %}
 							<div class="row">
-								<input type="text" name="username" id="username" required class="form__input" placeholder="Username">
+								<input type="text" name="code" id="username" required class="form__input" placeholder="Code">
 							</div>
-							<div class="row">
-								<!-- <span class="fa fa-lock"></span> -->
-								<input type="password" name="password" required id="password" class="form__input" placeholder="Password">
-							</div>
-							
+						
 							<div class="row">
 								<input type="submit" value="Submit" class="btn">
 							</div>
 						</form>
 					</div>
-					<div class="row">
-						<p>Don't have an account? <a href="{% url 'user:register_view' %}">Register Here</a></p>
-					</div>
+				
 				</div>
 			</div>
 		</div>
