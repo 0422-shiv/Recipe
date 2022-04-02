@@ -42,7 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin,DateMixin):
     mobile_no = models.BigIntegerField(unique=True,null=True, blank=True)  # User contact no.
     gender = models.CharField(max_length=10,null=True,blank=True)
     otp = models.IntegerField(null=True, blank=True)   # email verification otp
-  
+    img= models.ImageField(upload_to="profile", height_field=None, width_field=None, max_length=None,null=True,blank=True)
     USERNAME_FIELD = 'username'
 
     objects = UserManager()
