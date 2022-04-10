@@ -20,31 +20,36 @@
       </div>
 	  <div class="col-md-9">
 	   {% include "tabs-menu.html" %}
-    <form class="mt-4">
+    <form class="mt-4" method='POST'  enctype="multipart/form-data" >
+		{% csrf_token %}
 		<div class="row g-4">
 		<div class="col-md-6">
 		<label>Recipe Name</label>
-		<input class="form-control" type="text" />
+		<input class="form-control" type="text" name="name" required/>
 		</div>
 		<div class="col-md-6">
 		<label>Photo upload</label>
-		<input class="form-control" type="file" />
+		<input class="form-control" type="file" name="photo"  required/>
 		</div>
 		<div class="col-md-6">
 		<label>Tutorial Video</label>
-		<input class="form-control" type="file" />
+		<input class="form-control" type="file" name="video" required/>
 		</div>
 		<div class="col-md-6">
-		<label>Category</label>
-		<input class="form-control" type="text" />
+			<label>Category</label>
+			<select class="form-select" aria-label="Default select example"  name="category">
+				{% for data in categories %}
+				<option value="{{data.id}}" selected>{{data.name}}</option>
+				{% endfor  %}
+			  </select>
 		</div>
 		<div class="col-md-12">
 		<label>Description</label>
-		<textarea class="form-control h-150"></textarea>
+		<textarea class="form-control h-150" name='description' required/></textarea>
 		</div>
 		<div class="col-md-12">
 		
-		<button class="btn btn-danger">Send</button>
+		<button type='submit' class="btn btn-danger">Submit</button>
 		</div>
 		
 		

@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     #apps
     'home',
     'find_recipe',
-    # 'dashboard',
+    'dashboard',
     'user'
 ]
 

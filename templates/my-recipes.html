@@ -1,168 +1,69 @@
-{% extends 'base-template.html' %} 
-{% block content %} 
+{% extends 'base-template.html' %}
+{% block content %}
 {% load static %}
+<style>
+button.confirm {
+
+    display: inline-block;
+    background-color:#8c2c52;
+    box-shadow: #8c2c52;
+
+}
+</style>
 <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="container text-center text-md-left" data-aos="fade-up">
-      <h1>The Thatix Recipe <span>Community</span></h1>
-
-     
-   
+        <h1>The Thatix Recipe <span>Community</span></h1>
     </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-<section class="py-5">
-<div class="container">
- <div class="row">
-    <div class="col-md-3">
-        {% include "recipe-profile.html" %}
-      </div>
-	  <div class="col-md-9">
-	   {% include "tabs-menu.html" %}
-        <!-- Tabs content -->
-        <div class="tab-content profile-form" id="v-pills-tabContent">
-          <div class="tab-pane fade  show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="product-boxe">
-                 <img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
-                  <h3 class="sewing">Tart Pecan Pie</h3>
-                 
-                  <ul class="inlienes">
-                    <li class="inline-list"><i class="bi bi-pencil"></i>
-                      <a href="" class="font-sizes">Edit</a>
-                    </li>
-                    <li class="inline-list"><i class="bi bi-trash"></i>
-                      <a href="" class="font-sizes">Delete</a>
-                    </li>
-                    <li class="inline-list">
-                      <div class="custom-control custom-switch font-sizes">
-                        <input type="checkbox" class="custom-control-input" id="customSwitches-active">
-                        <label class="custom-control-label " for="customSwitches-active">Active</label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="product-boxe">
-                 <img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
-                  <h3 class="sewing">Tart Pecan Pie</h3>
-                 
-                  <ul class="inlienes">
-                    <li class="inline-list"><i class="bi bi-pencil"></i>
-                      <a href="" class="font-sizes">Edit</a>
-                    </li>
-                    <li class="inline-list"><i class="bi bi-trash"></i>
-                      <a href="" class="font-sizes">Delete</a>
-                    </li>
-                    <li class="inline-list">
-                      <div class="custom-control custom-switch font-sizes">
-                        <input type="checkbox" class="custom-control-input" id="customSwitches-active-2">
-                        <label class="custom-control-label " for="customSwitches-active-2">Active</label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="product-boxe">
-                  <img src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
-                  <h3 class="sewing">Tart Pecan Pie</h3>
-                 
-                  <ul class="inlienes">
-                    <li class="inline-list"><i class="bi bi-pencil"></i>
-                      <a href="" class="font-sizes">Edit</a>
-                    </li>
-                    <li class="inline-list"><i class="bi bi-trash"></i>
-                      <a href="" class="font-sizes">Delete</a>
-                    </li>
-                    <li class="inline-list">
-                      <div class="custom-control custom-switch font-sizes">
-                        <input type="checkbox" class="custom-control-input" id="customSwitches-active-3">
-                        <label class="custom-control-label " for="customSwitches-active-3">Active</label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="product-boxe">
-                 <img src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
-                  <h3 class="sewing">Tart Pecan Pie</h3>
-                 
-                  <ul class="inlienes">
-                    <li class="inline-list"><i class="bi bi-pencil"></i>
-                      <a href="" class="font-sizes">Edit</a>
-                    </li>
-                    <li class="inline-list"><i class="bi bi-trash"></i>
-                      <a href="" class="font-sizes">Delete</a>
-                    </li>
-                    <li class="inline-list">
-                      <div class="custom-control custom-switch font-sizes">
-                        <input type="checkbox" class="custom-control-input" id="customSwitches-active-4">
-                        <label class="custom-control-label " for="customSwitches-active4">Active</label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="product-boxe">
-                 <img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
-                  <h3 class="sewing">Tart Pecan Pie</h3>
-                 
-                  <ul class="inlienes">
-                    <li class="inline-list"><i class="bi bi-pencil"></i>
-                      <a href="" class="font-sizes">Edit</a>
-                    </li>
-                    <li class="inline-list"><i class="bi bi-trash"></i>
-                      <a href="" class="font-sizes">Delete</a>
-                    </li>
-                    <li class="inline-list">
-					<div class="form-check form-switch">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-  <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
-</div>
-                      
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="product-boxe">
-                 <img src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" class="img-fluid rounded-3 mb-3" alt="">
-                  <h3 class="sewing">Tart Pecan Pie</h3>
-                 
-                  <ul class="inlienes">
-                    <li class="inline-list"><i class="bi bi-pencil"></i>
-                      <a href="" class="font-sizes">Edit</a>
-                    </li>
-                    <li class="inline-list"><i class="bi bi-trash"></i>
-                      <a href="" class="font-sizes">Delete</a>
-                    </li>
-                    <li class="inline-list">
-                     <div class="form-check form-switch">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-  <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
-</div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
- 
-          </div>
-          
-        </div>
-
-	  </div>
-      
-</div>
-</div>
 </section>
-
-
-  </main><!-- End #main -->
-  {% endblock %}
+<main id="main">
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    {% include "recipe-profile.html" %}
+                </div>
+                <div class="col-md-9">
+                    {% include "tabs-menu.html" %}
+                    <!-- Tabs content -->
+                    <div class="tab-content profile-form" id="v-pills-tabContent">
+                        <div class="tab-pane fade  show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <div class="row">
+                                {% for data in recipes %}
+                                <div class="col-md-4">
+                                    <div class="product-boxe">
+                                        {% if data.img %}
+                                        <img src="{{data.img.url}}" style='height: 145px;
+    width: 218px;' class="img-fluid rounded-3 mb-3" alt="">
+                                        {% endif %}
+                                        <h3 class="sewing">{{data.name}}</h3>
+                                        <ul class="inlienes">
+                                            <li class="inline-list"><i class="bi bi-pencil"></i>
+                                                <a href="{% url 'dashboard:recipe_update_view' data.id %}" class="font-sizes">Edit</a>
+                                            </li>
+                                            <li class="inline-list"><i class="bi bi-trash"></i>
+                                                <a href="javascript:void(0)" class="font-sizes delete" data-id="{{data.id}}">Delete</a>
+                                            </li>
+                                            <li class="inline-list">
+                                                <div class="custom-control custom-switch font-sizes">
+                                                  <!--   <input type="checkbox" class="custom-control-input" id="customSwitches-active-2"> -->
+                                                  {% if data.status == True %}
+                                                    <a href="javascript:void(0)" class="custom-control-label set-status" data-id="{{data.id}}" for="customSwitches-active-2">Active</a>
+                                                        {% else %}
+                                                         <a href="javascript:void(0)" class="custom-control-label set-status" data-id="{{data.id}}" for="customSwitches-active-2">Inactive</a>
+                                                        {% endif %}
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
