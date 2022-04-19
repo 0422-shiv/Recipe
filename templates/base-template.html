@@ -89,7 +89,7 @@
     <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
     <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
@@ -126,7 +126,7 @@
         });
     });
     </script>
-        <Script>
+    <Script>
     $(document).ready(function() {
         $(".set-status").click(function() {
             var value = $(this).data("id");
@@ -159,6 +159,48 @@
         });
     });
     </script>
+    <script>
+$(document).on('change', ".short_by", function() {
+    var short_by = $(this).val();
+    // alert(short_by);
+    window.location.href = short_by;
+    set_short_filter(short_by);
+
+});
+
+$(document).on("change", ".filters", function() {
+    console.log("success")
+    set_short_filter();
+});
+
+
+function set_short_filter(set_filter = "") {
+    var category_type = "";
+
+    $(".category_type:checked").each(function() {
+        category_type = category_type + "&" + $(this).val();
+        console.log(category_type);
+
+    });
+    var selected = $(".category_type :selected").map((_, e) => e.value).get()
+
+    for (var i = selected.length - 1; i >= 0; i--) {
+        if (selected[i] != '') {
+
+            category_type = category_type + "&" + selected[i];
+            console.log(category_type)
+        }
+    }
+
+    var setfilterURL = "";
+
+    if (category_type) { setfilterURL = setfilterURL + category_type };
+    if (set_filter) { setfilterURL = setfilterURL + "&" + set_filter; }
+
+    window.location.href = "?" + setfilterURL;
+
+}
+</script>
 </body>
 
 </html>

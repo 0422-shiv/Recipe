@@ -21,11 +21,14 @@
                                     </div>
                                     <div class="card-body">
                                         <ul>
-                                            <li><a href="#" class="">Fruit and vegetables <span><input type="checkbox"></span></a></li>
-                                            <li><a href="#">Starchy food<span><input type="checkbox"></span></a></li>
-                                            <li><a href="#">Dairy <span><input type="checkbox"></span></a></li>
-                                            <li><a href="#">Protein <span><input type="checkbox"></span></a></li>
-                                            <li><a href="#">Fat <span><input type="checkbox"></span></a></li>
+                                            {% for data in category %}
+                                            {% if data in category_list %}
+                                            <li><a href="#" class="filters">{{data.name}}<span><input value="id={{data.id}}" type="checkbox" class="category_type" checked></span></a></li>
+                                            {% else %}
+                                            <li><a href="#" class="filters">{{data.name}}<span><input value="id={{data.id}}" type="checkbox" class="category_type"></span></a></li>
+                                            {% endif %}
+                                            {% endfor %}
+                                          
                                         </ul>
                                     </div>
                                 </div>
@@ -34,10 +37,10 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <form action="#" class="mb-3">
+                    <form method="GET" class="mb-3">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                            <button class="input-group-text bg-danger text-white"><i class="bi bi-search"></i></button>
+                            <input type="search" name="q" value="{{q}}"class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <button type="submit" class="input-group-text bg-danger text-white"><i class="bi bi-search"></i></button>
                         </div>
                     </form>
                     <div class="row g-3">
