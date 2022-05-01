@@ -201,6 +201,25 @@ function set_short_filter(set_filter = "") {
 
 }
 </script>
+<script>
+  $(".rating").on('click', function(e){
+    let value = $(this).data('value');
+    let id = $(this).data('id');
+    console.log(value,id)
+    var token = '{{csrf_token}}'
+     $.ajax({
+          headers: { "X-CSRFToken": token },
+        url: "{% url 'find_recipe:rating_recipe_view' %}",
+        type: 'POST',
+        data: {'value': value,'id':id},
+        success: function (d){
+         // some processing
+         console.log(true)
+        }
+     })
+  
+  });
+</script>
 </body>
 
 </html>

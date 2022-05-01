@@ -28,7 +28,6 @@
                                             <li><a href="#" class="filters">{{data.name}}<span><input value="id={{data.id}}" type="checkbox" class="category_type"></span></a></li>
                                             {% endif %}
                                             {% endfor %}
-                                          
                                         </ul>
                                     </div>
                                 </div>
@@ -39,12 +38,12 @@
                 <div class="col-md-9">
                     <form method="GET" class="mb-3">
                         <div class="input-group mb-3">
-                            <input type="search" name="q" value="{{q}}"class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <input type="search" name="q" value="{{q|default:''}}" class="form-control" aria-label="Amount (to the nearest dollar)">
                             <button type="submit" class="input-group-text bg-danger text-white"><i class="bi bi-search"></i></button>
                         </div>
                     </form>
                     <div class="row g-3">
-                      {% for data in recipes %}
+                        {% for data in recipes %}
                         <div class="col-md-4">
                             <div class="icon-box border rounded-3">
                                 <div id="carouselExampleIndicators{{data.id}}" class="carousel slide" data-bs-ride="carousel">
@@ -53,10 +52,11 @@
                                             <img src="{{data.img.url}}" width="264px" height="194px" class="img-fluid rounded-3 d-block w-100" alt="">
                                         </div>
                                         <div class="carousel-item">
-                                     <!--        <iframe width="100%" height="230" src="{{data.video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                                             <video width="264px" height="194px" controls  >
-                             <source src="{{data.video.url}}" type="video/mp4"></source>
-                        </video>  
+                                            <!--        <iframe width="100%" height="230" src="{{data.video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                                            <video width="264px" height="194px" controls>
+                                                <source src="{{data.video.url}}" type="video/mp4">
+                                                </source>
+                                            </video>
                                         </div>
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{data.id}}" data-bs-slide="prev">
@@ -71,25 +71,45 @@
                                 <div class="p-3">
                                     <h4><a href="#">{{data.name}}</a></h4>
                                     <div class="star-rating">
-                                        <input id="star-5" type="radio" name="rating" value="star-5" />
-                                        <label for="star-5" title="5 stars">
+                                        <input id="star-5-{{data.name}}" type="radio" class="rating" data-id="{{data.id}}" data-value="5" name="rating" value="star-5-{{data.name}}" />
+                                        <label for="star-5-{{data.name}}" title="5 stars">
+                                            {% if data.rating_points_avg >= 5 and data.rating_points_avg < 6 %}
+                                            <i class="active bi bi-star-fill" style="color: #f2b600;" aria-hidden="true"></i>
+                                            {% else %}
                                             <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                            {% endif %}
                                         </label>
-                                        <input id="star-4" type="radio" name="rating" value="star-4" />
-                                        <label for="star-4" title="4 stars">
-                                            <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                        <input id="star-4-{{data.id}}" type="radio" class="rating" data-id="{{data.id}}" data-value="4" name="rating" value="star-4-{{data.id}}" />
+                                        <label for="star-4-{{data.id}}" title="4 stars">
+                                             {% if data.rating_points_avg >= 4 and data.rating_points_avg < 5  or data.rating_points_avg >= 5 and data.rating_points_avg < 6 %}
+                                            <i class="active bi bi-star-fill" style="color: #f2b600;" aria-hidden="true"></i>
+                                                {% else %}
+                                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                                {% endif %}
                                         </label>
-                                        <input id="star-3" type="radio" name="rating" value="star-3" />
-                                        <label for="star-3" title="3 stars">
-                                            <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                        <input id="star-3-{{data.id}}" type="radio" class="rating" data-id="{{data.id}}" data-value="3" name="rating" value="star-3-{{data.id}}" />
+                                        <label for="star-3-{{data.id}}" title="3 stars">
+                                                 {% if data.rating_points_avg >= 3 and data.rating_points_avg < 4  or data.rating_points_avg >= 4 and data.rating_points_avg < 5  or data.rating_points_avg >= 5 and data.rating_points_avg < 6 %}
+                                             <i class="active bi bi-star-fill" style="color: #f2b600;" aria-hidden="true"></i>
+                                                {% else %}
+                                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                                {% endif %}
                                         </label>
-                                        <input id="star-2" type="radio" name="rating" value="star-2" />
-                                        <label for="star-2" title="2 stars">
-                                            <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                        <input id="star-2-{{data.id}}" type="radio" class="rating" data-id="{{data.id}}" data-value="2" name="rating" value="star-2-{{data.id}}" />
+                                        <label for="star-2-{{data.id}}" title="2 stars">
+                                                  {% if data.rating_points_avg >= 2 and data.rating_points_avg < 3  or  data.rating_points_avg >= 3 and data.rating_points_avg < 4  or data.rating_points_avg >= 4 and data.rating_points_avg < 5  or data.rating_points_avg >= 5 and data.rating_points_avg < 6 %}
+                                             <i class="active bi bi-star-fill" style="color: #f2b600;" aria-hidden="true"></i>
+                                                {% else %}
+                                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                                {% endif %}
                                         </label>
-                                        <input id="star-1" type="radio" name="rating" value="star-1" />
-                                        <label for="star-1" title="1 star">
-                                            <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                        <input id="star-1-{{data.id}}" type="radio" class="rating" data-id="{{data.id}}" data-value="1" name="rating" value="star-1-{{data.id}}" />
+                                        <label for="star-1-{{data.id}}" title="1 star">
+                                            {% if data.rating_points_avg >= 1 and data.rating_points_avg < 2  or  data.rating_points_avg >= 2 and data.rating_points_avg < 3  or  data.rating_points_avg >= 3 and data.rating_points_avg < 4  or data.rating_points_avg >= 4 and data.rating_points_avg < 5 or data.rating_points_avg >= 5 and data.rating_points_avg < 6 %}
+                                            <i class="active bi bi-star-fill" style="color: #f2b600;" aria-hidden="true"></i>
+                                                {% else %}
+                                                <i class="active bi bi-star-fill" aria-hidden="true"></i>
+                                                {% endif %}
                                         </label>
                                     </div>
                                     <p>{{data.description}}</p>
@@ -97,11 +117,12 @@
                             </div>
                         </div>
                         {% endfor %}
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </main><!-- End #main -->
+{% endblock %}
+{% block script %}
 {% endblock %}

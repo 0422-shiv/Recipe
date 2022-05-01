@@ -17,6 +17,12 @@ class Recipe(models.Model):
     description = models.TextField()
     created_by = models.ForeignKey(User,on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
+    rating_points_avg = models.FloatField(default=0,null=True,blank=True)
+    no_of_user_rated_points_1 = models.PositiveIntegerField(default=0,null=True,blank=True)
+    no_of_user_rated_points_2 = models.PositiveIntegerField(default=0,null=True,blank=True)
+    no_of_user_rated_points_3 = models.PositiveIntegerField(default=0,null=True,blank=True)
+    no_of_user_rated_points_4 = models.PositiveIntegerField(default=0,null=True,blank=True)
+    no_of_user_rated_points_5 = models.PositiveIntegerField(default=0,null=True,blank=True)
     
     def __str__(self) -> str:
         return self.name
