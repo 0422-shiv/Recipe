@@ -4,11 +4,39 @@ from dashboard.models import Recipe,Categories
 from django.http import JsonResponse
 from django.db.models import Q
 # Create your views here.
+# from haystack.forms import SearchForm
+# from haystack.generic_views import SearchView
+# from haystack import indexes
+# from django import forms
+
+
+# class QScriptIndex(indexes.SearchIndex, indexes.Indexable):
+#     v = indexes.CharField(document=True)
+
+#     def get_model(self):
+#         return QScript
+
+
+# class QScriptSearchForm(SearchForm):
+#     text_fuzzy = forms.CharField(required=False)    
+
+#     def search(self):        
+#         sqs = super(QScriptSearchForm, self).search()
+
+#         if not self.is_valid():
+#             return self.no_query_found()
+
+#         text_fuzzy = self.cleaned_data.get('text_fuzzy')
+#         if text_fuzzy:
+#             sqs = sqs.filter(text__fuzzy=text_fuzzy)
+
+#         return sqs
 
 
 class FindRecipeView(generic.ListView):
     template_name = "find-recipe.html"  
     context_object_name  = 'recipes'
+    # form_class = QScriptSearchForm
     
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
@@ -25,8 +53,12 @@ class FindRecipeView(generic.ListView):
              query=query.filter(
                  Q(name__icontains=self.request.GET.get('q')) | 
                  Q(description__icontains=self.request.GET.get('q')) |
-                 Q(category__name__icontains = self.request.GET.get('q')))
-        print(query)
+                 Q(category__name__icontains = self.request.GET.get('q'))  
+               )
+      
+        
+        #     query=query.filter(name__unaccent__lower__trigram_similar=self.request.GET.get('q'))
+        # print(query)
         return query
 
 

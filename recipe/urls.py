@@ -19,8 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('superadmin/', admin.site.urls),
     path('user/', include(('user.urls', 'user'), namespace='user')),
+    path('admin/', include(('recipe_admin.urls', 'recipe_admin'), namespace='recipe_admin')),
     path('dashboard/', include(('dashboard.urls', 'dashboard'), namespace='dashboad')),
     path('find-recipe/', include(('find_recipe.urls', 'find_recipe'), namespace='find_recipe')),
     path('', include(('home.urls', 'home'), namespace='home')),
