@@ -8,6 +8,10 @@
     </div>
 </section><!-- End Hero -->
 <main id="main">
+     <marquee attribute_name = "attribute_value"....more attributes style="color: #ea4989;">
+          <span style="font-weight: 700;">Tips: </span><span>  >>>Don’t overcrowd the pan.   >>>Let red meat sit before cutting into it.    >>>Store spices in the right location.   >>>Shut the stove off before eggs are done.  >>>Chop herbs with salt.  >>>Add salt to boiling pasta water.  >>>Always keep a few essentials on hand.  >>>Keep the root of the onion intact to help with slicing.</span>
+ 
+</marquee>
     <section class="py-5">
         <div class="container">
             <div class="row">
@@ -68,9 +72,13 @@
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 </div>
-                                <div class="p-3">
-                                    <h4><a href="#">{{data.name}}</a></h4>
+                                <div class="p-3" style="    height: 251px;">
+                                    <h4><a href="{% url 'find_recipe:recipe_detail' data.id %}" target="blank">{{data.name}}</a> </h4>
+                                   
                                     <div class="star-rating">
+ <div>
+  <button style="border: 0px solid #fff;
+    background: transparent;margin-left: 67px;" class="like" data-recipe_id="{{data.id}}"> {% if data|get_favourite_status:request.user %}<i class="bi bi-heart-fill"></i>{% else %}<i class="bi bi-heart"></i>{% endif %}</button></div>
                                         <input id="star-5-{{data.name}}" type="radio" class="rating" data-id="{{data.id}}" data-value="5" name="rating" value="star-5-{{data.name}}" />
                                         <label for="star-5-{{data.name}}" title="5 stars">
                                             {% if data.rating_points_avg >= 5 and data.rating_points_avg < 6 %}
@@ -111,8 +119,9 @@
                                                 <i class="active bi bi-star-fill" aria-hidden="true"></i>
                                                 {% endif %}
                                         </label>
+                                      
                                     </div>
-                                    <p>{{data.description}}</p>
+                                    <p>{{data.description|slice:'0:100'}}....</p>
                                 </div>
                             </div>
                         </div>

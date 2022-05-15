@@ -37,6 +37,10 @@
                     <li><a class="nav-link scrollto" href="{% url 'home:home_view' %}#about">About</a></li>
                     <li><a class="nav-link scrollto" href="{% url 'home:home_view' %}#contact">Contact Us</a></li>
                     <li><a class="nav-link scrollto " href="{% url 'find_recipe:find_recipe_view' %}">Find Recipe</a></li>
+                        {% if request.user.is_authenticated %}
+                       <li><a class="nav-link scrollto " href="{% url 'dashboard:recipe_upload_view' %}">Upload Recipe</a></li>
+                          <li><a class="nav-link scrollto " href="{% url 'dashboard:my_favourite_view' %}">Favourite Recipe</a></li>
+                          {% endif %}
                     {% if not request.user.is_authenticated %}
                     <li><a class="nav-link scrollto" href="{% url 'user:login_view' %}">Login</a></li>
                     <li><a class="nav-link scrollto" href="{% url 'user:register_view' %}"> Register </a></li>
@@ -221,6 +225,31 @@ function set_short_filter(set_filter = "") {
          console.log(true)
         }
      })
+  
+  });
+</script>
+
+<script>
+  $(".like").on('click', function(e){
+    {% if request.user.is_authenticated %}
+    let value = $(this).data('recipe_id');
+
+    console.log(value)
+    var token = '{{csrf_token}}'
+     $.ajax({
+          headers: { "X-CSRFToken": token },
+        url: "{% url 'dashboard:set_favourite' %}",
+        type: 'POST',
+        data: {'value': value},
+        success: function (d){
+         // some processing
+         location.reload()
+        }
+     })
+     {% else %}
+
+     alert("Login Or Register to add in favourite")
+     {% endif %}
   
   });
 </script>

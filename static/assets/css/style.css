@@ -1248,7 +1248,7 @@ section {
 }
 .star-rating {
   direction: rtl;
-  display: inline-block;
+  display: flex;
   padding: 20px;
   cursor: default;
 }
@@ -1418,7 +1418,7 @@ ul.inlienes {
 .tabbable-line > .nav-tabs > li {
     border-bottom: 3px solid darkslategrey;
     padding: 0;
-    width: 25%;
+    width: 20%;
     text-align: center;
 }
 /*a#v-pills-messages-tab:hover {

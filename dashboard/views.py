@@ -9,9 +9,10 @@ import os
 from .forms import MyPasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.db.models import Q
-from .models import Categories,Recipe
+from .models import Categories,Recipe,FavouriteRecipe
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.template.defaulttags import register
 # Create your views here.
 
 @method_decorator(login_required(login_url='/user'), name="dispatch")
@@ -103,7 +104,25 @@ class MyRecipeView(generic.TemplateView):
         context=super().get_context_data(**kwargs)
         context['recipes'] = Recipe.objects.filter(created_by = self.request.user)
         return context
+
+@method_decorator(login_required(login_url='/user'), name="dispatch")    
+class MyFavouriteView(generic.TemplateView):
+    template_name = "my-favourite.html" 
     
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['recipes'] = FavouriteRecipe.objects.filter(user = self.request.user)
+        return context
+    
+    
+@method_decorator(login_required(login_url='/user'), name="dispatch")    
+class RecipeDetailViewDashboard(generic.DetailView):
+    template_name = "recipe-detail.html"
+    context_object_name= 'instance' 
+    queryset=Recipe.objects.all()
+    
+    
+
     
 @method_decorator(login_required(login_url='/user'), name="dispatch")    
 class RecipeUpdateView(generic.TemplateView):
@@ -151,9 +170,34 @@ def DeleteRecipeView(request,id):
 
 def SetStatus(request,id):
     ins=Recipe.objects.get(id=id)
-    print(ins.status)
+ 
     if ins.status:
         Recipe.objects.filter(id=id).update(status=False)
     else:
         Recipe.objects.filter(id=id).update(status=True)
     return JsonResponse({'status':True})
+
+@method_decorator(login_required(login_url='/user'), name="dispatch")    
+class SetFavourite(generic.View):
+    def post(self,request):
+        recipe_id = Recipe.objects.get(id=request.POST.get('value'))
+        if FavouriteRecipe.objects.filter(user=request.user).filter(recipe=recipe_id).exists():
+            FavouriteRecipe.objects.filter(user=request.user).filter(recipe=recipe_id).delete()
+        else :
+            FavouriteRecipe.objects.create(user=request.user,recipe=recipe_id)
+        return JsonResponse({'status':True})
+       
+        
+        
+
+@register.filter(name='get_favourite_status')
+def get_favourite_status(recipe,user):
+    
+    status=False
+    if user.is_authenticated:
+        if FavouriteRecipe.objects.filter(user=user).filter(recipe=recipe).exists():
+            status=True
+    
+    return status
+
+   

@@ -26,3 +26,12 @@ class Recipe(models.Model):
     
     def __str__(self) -> str:
         return self.name
+    
+    
+class FavouriteRecipe(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE)
+    
+    
+    def __str__(self) -> str:
+        return f'User:-{self.user.username} Recipe:-{self.recipe.name}'

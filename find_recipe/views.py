@@ -1,42 +1,16 @@
 from django.shortcuts import render
 from django.views import generic
 from dashboard.models import Recipe,Categories
-from django.http import JsonResponse
+from django.http import HttpRequest, JsonResponse
 from django.db.models import Q
 # Create your views here.
-# from haystack.forms import SearchForm
-# from haystack.generic_views import SearchView
-# from haystack import indexes
-# from django import forms
 
-
-# class QScriptIndex(indexes.SearchIndex, indexes.Indexable):
-#     v = indexes.CharField(document=True)
-
-#     def get_model(self):
-#         return QScript
-
-
-# class QScriptSearchForm(SearchForm):
-#     text_fuzzy = forms.CharField(required=False)    
-
-#     def search(self):        
-#         sqs = super(QScriptSearchForm, self).search()
-
-#         if not self.is_valid():
-#             return self.no_query_found()
-
-#         text_fuzzy = self.cleaned_data.get('text_fuzzy')
-#         if text_fuzzy:
-#             sqs = sqs.filter(text__fuzzy=text_fuzzy)
-
-#         return sqs
 
 
 class FindRecipeView(generic.ListView):
     template_name = "find-recipe.html"  
     context_object_name  = 'recipes'
-    # form_class = QScriptSearchForm
+   
     
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
@@ -47,20 +21,34 @@ class FindRecipeView(generic.ListView):
     
     def get_queryset(self):
         query=Recipe.objects.filter(status=True)
+        query_list=[]
         if self.request.GET.getlist('id'):
             query=query.filter(category__in = Categories.objects.filter(id__in=self.request.GET.getlist('id')))
         if self.request.GET.get('q'):
-             query=query.filter(
+            q=self.request.GET.get('q')
+            # q_list=q.split(' ')
+            # print(q_list)
+            query=query.filter(
                  Q(name__icontains=self.request.GET.get('q')) | 
                  Q(description__icontains=self.request.GET.get('q')) |
-                 Q(category__name__icontains = self.request.GET.get('q'))  
-               )
+                 Q(category__name__icontains = self.request.GET.get('q')))
+            # for data in q_list:
+            #     # print(data,query.filter(name__icontains = data))
+            #     if query.filter(name__icontains = data):
+            #         print(data)
+            #         for item in query.filter(name__icontains = data):
+            #             query_list.append(query.filter(name__icontains = item))
+            #             print(query_list)
+               
       
-        
+        # print(query_list)
         #     query=query.filter(name__unaccent__lower__trigram_similar=self.request.GET.get('q'))
         # print(query)
         return query
-
+class RecipeDetailView(generic.DetailView):
+    template_name = "detail.html"
+    context_object_name= 'instance' 
+    queryset=Recipe.objects.all()
 
 class RatingRecipeView(generic.View):   
     def post(self,request):
@@ -147,5 +135,10 @@ class RatingRecipeView(generic.View):
         ins.rating_points_avg = avg
         ins.save()
         return JsonResponse({'status':1})
+    
+
+    
+    
+
      
     

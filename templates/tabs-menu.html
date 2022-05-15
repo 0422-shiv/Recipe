@@ -1,3 +1,5 @@
+
+
 <div class="bg-lightgray">
     <div class="buttons_left">
       <h1>{{request.user.fullname}}</h1>
@@ -35,6 +37,7 @@
               <li> <a href="{% url 'dashboard:recipe_upload_view' %}">Recipe upload</a>
               </li>
               <li> <a href="{% url 'dashboard:my_recipe_view' %}">My recipes</a></li>
+                <li> <a href="{% url 'dashboard:my_favourite_view' %}">My Favourites</a></li>
              
             </ul>
           </div>
