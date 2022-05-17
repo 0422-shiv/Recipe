@@ -17,7 +17,14 @@ urlpatterns = [
     path('update-recipe/<int:id>', views.UpdateRecipeView.as_view(), name="update_recipe"),
     path('delete-recipe/<int:id>', views.DeleteRecipeView.as_view(), name="delete_recipe"),
     
+    #manage profile
     path('profile/', views.AdminProfileView.as_view(), name="admin_profile"),
-    path('admin-logout/', views.AdminLogoutView, name="admin_logout")
+    path('admin-logout/', views.AdminLogoutView, name="admin_logout"),
+    
+    # manage Tips
+    path('manage-tips/', views.ManageRecipeTipsView.as_view(), name="manage_tips"),
+    path('add-tip/', views.AddRecipeTipView.as_view(), name="add_tip"),
+    path('update-tip/<int:id>', views.UpdateRecipeTipView.as_view(), name="update_tip"),
+    path('delete-tip/<int:id>', views.DeleteRecipeTipView.as_view(), name="delete_tip"),
 
 ]

@@ -35,3 +35,9 @@ class FavouriteRecipe(models.Model):
     
     def __str__(self) -> str:
         return f'User:-{self.user.username} Recipe:-{self.recipe.name}'
+
+class RecipeTips(models.Model):
+    name = models.CharField(max_length=255)
+    
+    def __str__(self) -> str:
+        return self.name

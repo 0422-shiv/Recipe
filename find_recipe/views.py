@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from dashboard.models import Recipe,Categories
+from dashboard.models import Recipe,Categories,RecipeTips
 from django.http import HttpRequest, JsonResponse
 from django.db.models import Q
 # Create your views here.
@@ -17,33 +17,33 @@ class FindRecipeView(generic.ListView):
         context['q']=self.request.GET.get('q')
         context['category_list']=Categories.objects.filter(id__in=self.request.GET.getlist('id'))
         context['category'] = Categories.objects.all()
+        context['tips'] = RecipeTips.objects.all().order_by('-id')
         return context
     
     def get_queryset(self):
         query=Recipe.objects.filter(status=True)
-        query_list=[]
+        
         if self.request.GET.getlist('id'):
             query=query.filter(category__in = Categories.objects.filter(id__in=self.request.GET.getlist('id')))
         if self.request.GET.get('q'):
             q=self.request.GET.get('q')
-            # q_list=q.split(' ')
-            # print(q_list)
+
             query=query.filter(
                  Q(name__icontains=self.request.GET.get('q')) | 
                  Q(description__icontains=self.request.GET.get('q')) |
                  Q(category__name__icontains = self.request.GET.get('q')))
-            # for data in q_list:
-            #     # print(data,query.filter(name__icontains = data))
-            #     if query.filter(name__icontains = data):
-            #         print(data)
-            #         for item in query.filter(name__icontains = data):
-            #             query_list.append(query.filter(name__icontains = item))
-            #             print(query_list)
+            
+            if query:
+                pass
+            else:
                
-      
-        # print(query_list)
-        #     query=query.filter(name__unaccent__lower__trigram_similar=self.request.GET.get('q'))
-        # print(query)
+                query=Recipe.objects.filter(status=True)
+                for data in q.split(' '):
+                    query=Recipe.objects.filter(status=True).filter(name__icontains = data)
+                   
+                    if self.request.GET.getlist('id'):
+                        query=query.filter(category__in = Categories.objects.filter(id__in=self.request.GET.getlist('id')))
+  
         return query
 class RecipeDetailView(generic.DetailView):
     template_name = "detail.html"

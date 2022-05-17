@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
 
 from user.models import User
-from dashboard.models import Recipe,Categories
+from dashboard.models import Recipe,Categories,RecipeTips
 from django.db.models import Q
 import os
 from django.utils.decorators import method_decorator
@@ -294,3 +294,54 @@ def AdminLogoutView(request):
         logout(request)
         messages.success(request, "You have successfully logged out.")
         return HttpResponseRedirect(reverse('recipe_admin:admin_login'))
+    
+ ##############################################################################################   
+@method_decorator(login_required(login_url='/admin/login'), name="dispatch")   
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch') 
+class ManageRecipeTipsView(generic.TemplateView):
+    template_name = "recipe_admin/manage-tips.html" 
+    
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['tips'] = RecipeTips.objects.all().order_by('-id')
+        return context
+    
+@method_decorator(login_required(login_url='/admin/login'), name="dispatch") 
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')    
+class AddRecipeTipView(generic.View):
+    
+    def get(self, request, *args, **kwargs):
+        return render (request, 'recipe_admin/add-tip.html')
+    
+    def post(self,request):
+        name= request.POST.get('name')
+      
+        RecipeTips.objects.create(name=name)
+        messages.success(request, "Tip added successful") 
+        return HttpResponseRedirect(reverse('recipe_admin:manage_tips'))
+    
+
+@method_decorator(login_required(login_url='/admin/login'), name="dispatch")  
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')    
+class UpdateRecipeTipView(generic.View):
+    
+    def get(self, request,id, *args, **kwargs):
+        instance= RecipeTips.objects.get(id=id)
+        return render (request, 'recipe_admin/update-tip.html',{'instance':instance})
+    
+    def post(self,request,id):
+        name= request.POST.get('name')
+       
+        RecipeTips.objects.filter(id=id).update(name=name)
+        messages.success(request, "Tip uploadated successful") 
+        return HttpResponseRedirect(reverse('recipe_admin:manage_tips'))
+    
+    
+@method_decorator(login_required(login_url='/admin/login'), name="dispatch")
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch') 
+class DeleteRecipeTipView(generic.View):
+    
+    def post(self, request,id):
+        RecipeTips.objects.filter(id=id).delete()
+        messages.success(request, 'Tip deleted successful')
+        return HttpResponseRedirect(reverse('recipe_admin:manage_tips'))

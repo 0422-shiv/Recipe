@@ -106,6 +106,12 @@
                     <span>Manage Recipe</span>
                 </a>
             </li>
+               <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url  'recipe_admin:manage_tips' %}" style="{% if 'manage-tips' in request.build_absolute_uri or 'add-tip' in request.build_absolute_uri  or 'update-tip' in request.build_absolute_uri %}background: #ced4de;{% endif %}">
+                    <i class="bi bi-cloud-upload"></i>
+                    <span>Manage Tips</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url  'recipe_admin:admin_profile' %}" style="{% if 'profile' in request.build_absolute_uri %}background: #ced4de;{% endif %}">
                     <i class="bi bi-person"></i>
@@ -200,6 +206,39 @@ $("#imageUpload").change(function() {
                         $.ajax({
                             headers: { "X-CSRFToken": token },
                             url: "/admin/delete-recipe/"+delete_value,
+                            type: "POST",
+                            success: function(json) {
+                                swal("Done!", "It was succesfully deleted!", "success");
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                    }
+                })
+        });
+    });
+    </script>
+      <Script>
+    $(document).ready(function() {
+        $(".delete-tip").click(function() {
+            var delete_value = $(this).data("id");
+            console.log(delete_value)
+            swal({
+                    title: "Are you sure?",
+                    text: "You want to delete !",
+                    type: "warning",
+                    showCancelButton: true,
+                  
+                    confirmButtonText: 'Yes, delete it!',
+                    closeOnConfirm: false,
+                },
+                function(isConfirm) {
+                    if (isConfirm) {
+                        var token = '{{csrf_token}}';
+                        $.ajax({
+                            headers: { "X-CSRFToken": token },
+                            url: "/admin/delete-tip/"+delete_value,
                             type: "POST",
                             success: function(json) {
                                 swal("Done!", "It was succesfully deleted!", "success");
