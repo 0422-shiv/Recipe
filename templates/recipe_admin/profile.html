@@ -43,11 +43,15 @@
                             </div>
                         </form>
                         <div class="avatar-preview">
+                            {% if user.img %}
                             <div id="imagePreview" style="background-image: url({{ user.img.url }});">
                             </div>
+                            {% endif %}
                         </div>
+                        {% if user.img %}
                         <a href="{{ user.img.url }}" style="text-decoration: none;margin-left: 30px;
     font-size: 16px;" target="_blank">View Picture</a>
+    {% endif %}
                     </div>
                     <h1>{% if user.fullname %}{{user.fullname}}{% else %}{{user.email}}{% endif %}</h1>
                 </div>
