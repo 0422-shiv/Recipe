@@ -38,7 +38,7 @@
                     <li><a class="nav-link scrollto" href="{% url 'home:home_view' %}#contact">Contact Us</a></li>
                     <li><a class="nav-link scrollto " href="{% url 'find_recipe:find_recipe_view' %}">Find Recipe</a></li>
                         {% if request.user.is_authenticated %}
-                       <li><a class="nav-link scrollto " href="{% url 'dashboard:recipe_upload_view' %}">Upload Recipe</a></li>
+                       <li><a class="nav-link scrollto " href="{% url 'home:upload_recipe_view' %}">Upload Recipe</a></li>
                           <li><a class="nav-link scrollto " href="{% url 'dashboard:my_favourite_view' %}">Favourite Recipe</a></li>
                           {% endif %}
                     {% if not request.user.is_authenticated %}
@@ -51,7 +51,7 @@
                             {% if request.user.img %}
                             <img src="{{request.user.img.url}}" alt="Profile" class="rounded-circle">
                             {% else %}
-                             <img src="{% static 'assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
+                             <img src="{% static 'dummy-image.png' %}" alt="Profile" class="rounded-circle">
                             {% endif %}
                             <span class="d-none d-md-block dropdown-toggle ps-2">{% if request.user.is_authenticated %}{{request.user.username}}{% else %}Admin{% endif %}</span>
                         </a><!-- End Profile Iamge Icon -->

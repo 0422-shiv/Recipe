@@ -49,6 +49,11 @@ class RecipeDetailView(generic.DetailView):
     template_name = "detail.html"
     context_object_name= 'instance' 
     queryset=Recipe.objects.all()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tips'] = RecipeTips.objects.all().order_by('-id')
+        return context
+    
 
 class RatingRecipeView(generic.View):   
     def post(self,request):
